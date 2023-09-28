@@ -1,13 +1,10 @@
-from flask import Flask, request, session, jsonify, make_response
+from flask import Flask, session, jsonify, request, make_response
 
 app = Flask(__name__)
-app.json.compact = False
-
-app.secret_key = b'?w\x85Z\x08Q\xbdO\xb8\xa9\xb65Kj\xa9_'
+app.secret_key = 'your_secret_key_here'  # Replace with a secret key for security
 
 @app.route('/sessions/<string:key>', methods=['GET'])
 def show_session(key):
-
     session["hello"] = session.get("hello") or "World"
     session["goodnight"] = session.get("goodnight") or "Moon"
 
@@ -27,4 +24,3 @@ def show_session(key):
 
 if __name__ == '__main__':
     app.run(port=5555)
-    
